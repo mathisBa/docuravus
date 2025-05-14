@@ -1,0 +1,34 @@
+# Node.js dependencies
+node_modules
+
+# Dossier de build Docusaurus
+build
+.docusaurus
+
+# Lockfiles (on ne veut copier que package.json + package-lock.json)
+yarn.lock
+
+# Logs et caches
+npm-debug.log*
+*.log
+.cache
+coverage
+
+# Configuration locale et secrets
+.env
+.env.*.local
+
+# Docker
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# Git et IDE
+.git
+.gitignore
+.vscode
+.idea
+
+# Systèmes de fichiers
+.DS_Store
+*.swp

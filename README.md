@@ -1,41 +1,84 @@
-# Website
+# Documentation Docuravus
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+Ce dépôt contient la documentation de **Docuravus** générée par Docusaurus, ainsi que la configuration pour la servir via Docker/Nginx.
 
-### Installation
+---
 
-```
-$ yarn
-```
+## 🚀 Prérequis
 
-### Local Development
+- **Node.js** 20 et **npm** ou **Yarn**
+- **Docker** (optionnel pour la version containerisée)
 
-```
-$ yarn start
-```
+---
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+## 🔧 Lancement en local
 
-### Build
+```bash
+# 1. Cloner le dépôt
+git clone https://github.com/mon-orga/mon-repo.git
+cd mon-repo
 
-```
-$ yarn build
-```
+# 2. Installer les dépendances
+npm install
+# ou avec Yarn
+# yarn
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+# 3. Démarrer le serveur de dev
+npm run start
 
-### Deployment
+Ouvre ensuite http://localhost:3000
 
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
+Toute modification dans docs/, src/ ou docusaurus.config.js recharge automatiquement la page.
 ```
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+# Générer les fichiers statiques
+
+npm run build
+
+# (Optionnel) Tester le build en local
+
+npm run serve
+
+Le contenu statique est dans le dossier build/.
+Le serveur de npm run serve utilise serve pour afficher le résultat sur http://localhost:3000.
+
+# Version Docker
+
+Pour déployer la doc dans un container Docker + Nginx :
+
+## Construire l’image
+
+```bash
+docker build -t mon-docs-site .
+```
+
+## Lancer le conteneur
+
+```bash
+docker run -d \
+ --name docs-site \
+ -p 80:80 \
+ mon-docs-site
+```
+
+## Accéder à la documentation
+
+Ouvre http://localhost
+Astuce : change -p 80:80 pour mapper un autre port hôte si nécessaire.
+
+## Structure du projet
+
+```bash
+.
+├── docs/                 # Markdown de la doc
+├── src/
+│   ├── components/       # Composants React (ex: HomepageFeatures)
+│   └── pages/            # Pages statiques (ex: index.tsx pour la home)
+├── Dockerfile            # Build & runner Nginx
+├── nginx.conf            # Configuration Nginx pour servir build/
+├── .dockerignore         # Fichiers à ignorer lors du build Docker
+├── docusaurus.config.js  # Config principale du site
+├── sidebars.ts           # Structure de la sidebar
+└── package.json
+
+```
