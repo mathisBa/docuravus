@@ -11,6 +11,7 @@ const sidebars: SidebarsConfig = {
         "docker/structure-dockerfile",
         "docker/commandes-essentielles",
         "docker/exemple-dockerfile",
+        "docker/multistaging",
       ],
     },
     {
