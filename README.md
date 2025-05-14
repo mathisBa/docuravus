@@ -64,7 +64,6 @@ docker run -d \
 ## Accéder à la documentation
 
 Ouvre http://localhost
-Astuce : change -p 80:80 pour mapper un autre port hôte si nécessaire.
 
 ## Structure du projet
 
